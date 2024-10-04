@@ -1,0 +1,34 @@
+<%= form_with(model: @property, local: true, class: "max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md space-y-4") do |form| %>
+  <% if @property.errors.any? %>
+    <div id="error_explanation" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+      <p class="font-bold"><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</p>
+      <ul>
+        <% @property.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="space-y-4">
+    <div class="field">
+      <%= form.label :address, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :address, class: "form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :city, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :city, class: "form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :state, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :state, class: "form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Save Property', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" %>
+      <%= link_to 'Cancel', properties_path, class: 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,41 @@
+<div data-unit-id="<%= unit.id %>" class="flex border-b">
+  <div class="details w-full flex" data-unit-target="details" data-unit-id="<%= unit.id %>">
+    <div class="w-1/6 py-2 px-1"><%= unit.id %></div>
+    <div class="w-1/6 py-2 px-1"><%= unit.bedroom_count %></div>
+    <div class="w-1/6 py-2 px-1"><%= unit.bathroom_count %></div>
+    <div class="w-1/6 py-2 px-1"><%= unit.square_footage %> sq ft</div>
+    <div class="w-1/6 py-2 px-1"><%= number_to_currency(unit.rent_price) %></div>
+    <div class="w-1/6 py-2 px-2 flex space-x-1 justify-center" data-unit-target="crudButtons" data-unit-id="<%= unit.id %>">
+      <%= link_to 'Edit', "#", area_label: 'Edit Unit', class: 'bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded', data: { action: 'click->unit#edit' } %>
+      <button type="button"
+              area-label="Delete Unit"
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+              data-action="click->unit#delete"
+              data-unit-id="<%= unit.id %>">
+        Delete
+      </button>
+    </div>
+  </div>
+
+  <div class="hidden w-full flex" data-unit-target="editForm" data-unit-id="<%= unit.id %>">
+    <div class="w-1/6 py-2 px-1">
+      <%= unit.id %>
+    </div>
+    <div class="w-1/6 py-2 px-1">
+      <input type="number" name="bedrooms" value="<%= unit.bedroom_count %>" data-unit-target="editBedrooms" data-unit-id="<%= unit.id %>" placeholder="Bedrooms" class="form-input text-xs form-input-inline-edit">
+    </div>
+    <div class="w-1/6 py-2 px-1">
+      <input type="number" name="bathrooms" value="<%= unit.bathroom_count %>" data-unit-target="editBathrooms" data-unit-id="<%= unit.id %>" placeholder="Bathrooms" class="form-input text-xs form-input-inline-edit">
+    </div>
+    <div class="w-1/6 py-2 px-1">
+      <input type="number" name="square_footage" value="<%= unit.square_footage %>" data-unit-target="editSquareFootage" data-unit-id="<%= unit.id %>" placeholder="Square Footage" class="form-input text-xs form-input-inline-edit">
+    </div>
+    <div class="w-1/6 py-2 px-1">
+      <input type="number" name="rent_price" value="<%= unit.rent_price %>" data-unit-target="editRentPrice" data-unit-id="<%= unit.id %>" placeholder="Rent Price" class="form-input text-xs form-input-inline-edit">
+    </div>
+    <div class="w-1/6 py-2 px-2 flex space-x-1 justify-center">
+      <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded" aria-label="Edit Unit" data-action="click->unit#update" data-unit-id="<%= unit.id %>">Save</button>
+      <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded" area-label="Cancel Edit" data-action="click->unit#cancelEdit" data-unit-id="<%= unit.id %>">Cancel</button>
+    </div>
+  </div>
+</div>
